@@ -1,0 +1,10 @@
+#cloud-config
+---
+ssh_pwauth: true
+chpasswd:
+  list: |
+     root:${password}
+  expire: false
+runcmd:
+  - echo PermitRootLogin yes >> /etc/ssh/sshd_config
+  - systemctl restart sshd
