@@ -2,7 +2,6 @@
 set -ex
 
 # Start crio
-setenforce 0
 cd $GOSRC/github.com/kubernetes-sigs/cri-o
 nohup bin/crio --config $HOME/crio.conf &
 
@@ -13,7 +12,6 @@ git clone https://github.com/kubernetes/kubernetes --depth 1
 cd kubernetes
 
 # Run the node end-to-end tests
-set -x
 make test-e2e-node \
     PARALLELISM=1 \
     RUNTIME=remote \
@@ -21,6 +19,3 @@ make test-e2e-node \
     IMAGE_SERVICE_ENDPOINT=/var/run/crio/crio.sock \
     TEST_ARGS='--prepull-images=true --kubelet-flags="--cgroup-driver=systemd"' \
     FOCUS="\[Conformance\]"
-ret=$?
-setenforce 1
-exit $ret

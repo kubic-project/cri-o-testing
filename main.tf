@@ -75,7 +75,7 @@ module "critest" {
 }
 
 module "integration" {
-  source       = "modules/critest"
+  source       = "modules/integration"
   host         = "${local.host}"
   password     = "${var.password}"
   dependencies = ["${module.setup.depended_on}"]
