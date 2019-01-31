@@ -16,6 +16,8 @@ transactional-update pkg install -ly \
     libostree-devel \
     libseccomp-devel \
     make \
+    netcat-openbsd \
+    python \
     selinux-tools
 systemctl disable health-checker
 systemctl stop sshd
