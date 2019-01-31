@@ -28,6 +28,7 @@ resource "libvirt_domain" "kubic" {
   name      = "kubic-terraform-${random_pet.name.id}"
   memory    = "${var.memory}"
   cloudinit = "${libvirt_cloudinit_disk.commoninit.id}"
+  vcpu      = "${var.cpu}"
 
   cpu {
     mode = "host-passthrough"

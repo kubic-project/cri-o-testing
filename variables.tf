@@ -6,8 +6,14 @@ variable "password" {
 
 variable "memory" {
   type        = "string"
-  default     = "2048"
-  description = "The amount of RAM used"
+  default     = "4096"
+  description = "The amount of RAM to be used"
+}
+
+variable "cpu" {
+  type        = "string"
+  default     = "4"
+  description = "The amount of CPUs to be used"
 }
 
 variable "pr" {
