@@ -12,10 +12,9 @@ git clone https://github.com/kubernetes/kubernetes --depth 1
 cd kubernetes
 
 # Run the node end-to-end tests
+CRIO_SOCKET=unix:///var/run/crio/crio.sock
 make test-e2e-node \
-    PARALLELISM=1 \
     RUNTIME=remote \
-    CONTAINER_RUNTIME_ENDPOINT=unix:///var/run/crio.sock \
-    IMAGE_SERVICE_ENDPOINT=/var/run/crio/crio.sock \
-    TEST_ARGS='--prepull-images=true --kubelet-flags="--cgroup-driver=systemd"' \
-    FOCUS="\[Conformance\]"
+    CONTAINER_RUNTIME_ENDPOINT=$CRIO_SOCKET \
+    IMAGE_SERVICE_ENDPOINT=$CRIO_SOCKET \
+    TEST_ARGS='--prepull-images=true --feature-gates=VolumeSubpathEnvExpansion=true'

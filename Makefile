@@ -28,6 +28,3 @@ integration: init
 
 e2e-node: init
 	$(call run_test,e2e-node)
-
-e2e: init
-	$(call run_test,e2e)
